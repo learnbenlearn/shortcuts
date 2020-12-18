@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ShortcutButtonsController</members>
+        <name>ApexClass</name>
+    </types>
+
+    <types>
+        <members>Clicks_Saved__c</members>
+        <name>CustomObject</name>
+    </types>
+
+    <types>
+        <members>Home_Page_Default</members>
+        <name>FlexiPage</name>
+    </types>
+
+    <types>
+        <members>shortcuts</members>
+        <members>shortcutLink</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <version>50.0</version>
+</Package>

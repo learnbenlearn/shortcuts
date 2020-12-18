@@ -1,0 +1,23 @@
+<template>
+    <lightning-card>
+        <lightning-layout multiple-rows="true">
+            <template for:each={shortcuts} for:item="shortcut">
+                <lightning-layout-item size="5" key={shortcut.Name} padding="around-small">
+                    <c-shortcut-link shortcut-name={shortcut.Name} shortcut-icon={shortcut.Icon}
+                        shortcut-url={shortcut.URL} key={shortcut.Name}
+                        oncountupdate={handleCountUpdate}>
+                    </c-shortcut-link>
+                </lightning-layout-item>
+            </template>
+            <lightning-layout-item size="10" padding="around-small">
+                <template if:true={recordExists}>
+                    <lightning-record-view-form object-api-name="Clicks_Saved__c" record-id={csId}>
+                        <lightning-output-field field-class="slds-text-heading_small"
+                            field-name="Count__c">
+                        </lightning-output-field>
+                    </lightning-record-view-form>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
