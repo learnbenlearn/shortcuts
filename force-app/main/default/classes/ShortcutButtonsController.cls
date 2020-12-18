@@ -1,11 +1,22 @@
 public class ShortcutButtonsController {
     @AuraEnabled
-    public static void updateClicksCount() {
+    public static void updateClicksCount(String link) {
         List<Clicks_Saved__c> csList = [SELECT Id, Count__c FROM Clicks_Saved__c];
+        Integer clicksSaved = 0;
+        switch on link {
+            when 'Setup' {
+                clicksSaved = 1;
+            } when 'Object Manager' {
+                clicksSaved = 2;
+            } when else {
+                clicksSaved = 3;
+
+            }
+        }
         if(csList.size() == 0){
-            csList.add(new Clicks_Saved__c(Count__c=1));
+            csList.add(new Clicks_Saved__c(Count__c=clicksSaved));
         } else {
-            csList[0].Count__c += 1;
+            csList[0].Count__c += clicksSaved;
         }
         upsert csList;
     }

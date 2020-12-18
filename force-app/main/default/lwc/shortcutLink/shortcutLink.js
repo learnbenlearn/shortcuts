@@ -8,7 +8,7 @@ export default class ShortcutButton extends LightningElement {
     error = undefined
 
     updateCount() {
-        updateClicksCount()
+        updateClicksCount({link: this.shortcutName})
             .then(result => {
                 this.dispatchEvent(new CustomEvent('countupdate'))
             })
