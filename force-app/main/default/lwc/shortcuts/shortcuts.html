@@ -1,23 +1,33 @@
+<!--
+  @description       : Container component for shortcuts.
+  @author            : Ben Learn
+  @group             : 
+  @last modified on  : 03-04-2022
+  @last modified by  : Ben Learn
+-->
 <template>
     <lightning-card>
-        <lightning-layout multiple-rows="true">
-            <template for:each={shortcuts} for:item="shortcut">
-                <lightning-layout-item size="5" key={shortcut.Name} padding="around-small">
-                    <c-shortcut-link shortcut-name={shortcut.Name} shortcut-icon={shortcut.Icon}
-                        shortcut-url={shortcut.URL} key={shortcut.Name}
-                        oncountupdate={handleCountUpdate}>
-                    </c-shortcut-link>
-                </lightning-layout-item>
-            </template>
-            <lightning-layout-item size="10" padding="around-small">
-                <template if:true={recordExists}>
-                    <lightning-record-view-form object-api-name="Clicks_Saved__c" record-id={csId}>
-                        <lightning-output-field field-class="slds-text-heading_small"
-                            field-name="Count__c">
-                        </lightning-output-field>
-                    </lightning-record-view-form>
+        <template if:true={isLoading}>
+            <lightning-spinner size="small"></lightning-spinner>
+        </template>
+        <template if:false={isLoading}>
+            <lightning-layout multiple-rows="true">
+                <template for:each={shortcuts} for:item="shortcut">
+                    <lightning-layout-item size="6" key={shortcut.MasterLabel} padding="around-small">
+                        <c-shortcut-link shortcut-name={shortcut.MasterLabel} shortcut-icon={shortcut.Icon__c}
+                            shortcut-url={shortcut.URL__c} key={shortcut.MasterLabel} oncountupdate={handleCountUpdate}>
+                        </c-shortcut-link>
+                    </lightning-layout-item>
                 </template>
-            </lightning-layout-item>
-        </lightning-layout>
+                <lightning-layout-item size="12" padding="around-small">
+                    <template if:true={recordExists}>
+                        <lightning-record-view-form object-api-name="Clicks_Saved__c" record-id={csId}>
+                            <lightning-output-field field-class="slds-text-heading_small" field-name="Count__c">
+                            </lightning-output-field>
+                        </lightning-record-view-form>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
     </lightning-card>
 </template>

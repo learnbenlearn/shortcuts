@@ -1,4 +1,11 @@
-public class ShortcutButtonsController {
+/**
+ * @description       : Apex controller for shortcuts LWC.
+ * @author            : Ben Learn
+ * @group             : 
+ * @last modified on  : 03-04-2022
+ * @last modified by  : Ben Learn
+**/
+public class ShortcutsService {
     @AuraEnabled
     public static void updateClicksCount(String link) {
         List<Clicks_Saved__c> csList = [SELECT Id, Count__c FROM Clicks_Saved__c];
@@ -24,5 +31,10 @@ public class ShortcutButtonsController {
     @AuraEnabled(cacheable=true)
     public static List<Clicks_Saved__c> getClicksId() {
         return [SELECT Id FROM Clicks_Saved__c];
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Shortcut__mdt> getShortcuts() {
+        return [SELECT MasterLabel, Icon__c, URL__c FROM Shortcut__mdt];
     }
 }
